@@ -1,0 +1,18 @@
+if(matrixBtn[0][0].getText()=="O" && matrixBtn[1][1].getText()=="O"
+                && matrixBtn[2][2].getText()=="O"){
+                JOptionPane.showMessageDialog(null, "HA GANDO "+nombreJugador1);
+                resetJuego();
+        }else if(matrixBtn[0][0].getText()=="X" && matrixBtn[1][1].getText()=="X"
+                && matrixBtn[2][2].getText()=="X"){
+                JOptionPane.showMessageDialog(null, "HA GANDO "+nombreJugador2);
+                resetJuego();
+	
+	}else if(matrixBtn[2][0].getText()=="O" && matrixBtn[1][1].getText()=="O"
+                && matrixBtn[0][2].getText()=="O"){
+                JOptionPane.showMessageDialog(null, "HA GANDO "+nombreJugador1);
+                resetJuego();
+
+	}else if(matrixBtn[2][0].getText()=="X" && matrixBtn[1][1].getText()=="O"
+                && matrixBtn[0][2].getText()=="X"){
+                JOptionPane.showMessageDialog(null, "HA GANDO "+nombreJugador2);
+                resetJuego();
