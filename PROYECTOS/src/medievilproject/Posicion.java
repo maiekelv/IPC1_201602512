@@ -1,39 +1,73 @@
 
 package medievilproject;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Posicion extends JPanel {
-    public int x;
-    public int y;
+    private Image fondo;
+    public int px;
+    public int py;
     public char tipo;
     
 
     public Posicion(){}
     public Posicion(int x, int y,char  tipo ){
-    this.x = x;
-    this.y = y;
+    this.px = x;
+    this.py = y;
     this.tipo = tipo;
 }
-
-    public int getX() {
-        return x;
+    public void paintComponent(Graphics g){
+        int ancho = this.getSize().width;
+        int alto = this.getSize().height;
+        
+        if(this.fondo !=null){
+        g.drawImage(this.fondo, 0,0, ancho, alto, null);
+        }
+        super.paintComponent(g);
+    }
+    public void setFondo(String ruta){
+        try{
+        this.fondo = ImageIO.read(new File(ruta));
+        this.setOpaque(false);
+        }catch(IOException e){
+        this.fondo = null;
+        }
+        repaint();
+        
+        
+    }
+    public void setFondo(){
+        
+        this.fondo = null;
+        repaint();
+        
+        
     }
 
-    public int getY() {
-        return y;
+    public int getpX() {
+        return px;
+    }
+
+    public int getpY() {
+        return py;
     }
 
     public char getTipo() {
         return tipo;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setpX(int x) {
+        this.px = x;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setpY(int y) {
+        this.py = y;
     }
 
     public void setTipo(char tipo) {

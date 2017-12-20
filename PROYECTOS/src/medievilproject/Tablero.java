@@ -11,8 +11,8 @@ public class Tablero extends javax.swing.JFrame {
     public Dado dado;
     public int tamaño;
     public Posicion minas;
-    public int anchoActual;
-    public int altoActual;
+    public int anchoActual = 7;
+    public int altoActual = 7;
     public Posicion vidas;
     public Posicion tableroJg[][];
     public Jugador jugadores[];
@@ -20,9 +20,12 @@ public class Tablero extends javax.swing.JFrame {
     
     public Tablero() {
         initComponents();
+        this.tableroJg = new Posicion [18][18];
+        iniciarTableroCompleto();
+        this.setSize(2000,2000);
+        (new Thread(new Hilo(this))).start();
         jPanelCrear.setVisible(false);
-        jPanel1.setVisible(true);
-        jPanel1.setLayout(null);
+        
         // TODO add your handling code here:
         
     }   
@@ -37,8 +40,6 @@ public class Tablero extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -85,19 +86,6 @@ public class Tablero extends javax.swing.JFrame {
         getContentPane().add(jPanelCrear);
         jPanelCrear.setBounds(0, 0, 400, 30);
 
-        jPanel1.setLayout(null);
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 40, 220, 200);
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(290, 200, 79, 25);
-
         jMenu1.setText("Archivo");
         jMenu1.add(jSeparator1);
         jMenu1.add(jSeparator2);
@@ -123,11 +111,12 @@ public class Tablero extends javax.swing.JFrame {
     
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
        jPanelCrear.setVisible(true);
+       
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         this.tableroJg = new Posicion [18][18];
+         
         this.iniciarTableroCompleto();
          int nuevoAncho =Integer.parseInt( jTextField1.getText());
          int nuevoAlto =Integer.parseInt( jTextField2.getText());
@@ -158,16 +147,10 @@ public class Tablero extends javax.swing.JFrame {
                 }
         }      
         imprimirTablero();
-        this.jPanel1.invalidate();
-        this.jPanel1.repaint();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    
+        jPanelCrear.setVisible(false);
         
-        this.jPanel1.invalidate();
-        this.jPanel1.repaint();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
     public void paint(Graphics g){
         super.paintComponents(g);
     }
@@ -175,21 +158,24 @@ public class Tablero extends javax.swing.JFrame {
     public void imprimirTablero(){
         int altoPanel = 700/this.altoActual;
         int anchoPanel = 700/this.anchoActual;
-        setLayout(null);
+        
         for(int i=0;i<this.anchoActual;i++){
                 for(int j=0; j<this.altoActual;j++){   
                     int px = (i*anchoPanel)+1;
-                    int py = (j*altoPanel)+1;
-                    System.out.println(px);
-                    System.out.println(py);
-                    this.jPanel1.add(this.tableroJg[i][j]);
+                    int py = (j*altoPanel)+1+101;
+                    
+                    if(this.tableroJg[i][j].tipo == 'V'){
+                    this.tableroJg[i][j].setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\corazonamor.png");
+                    }
+                    else if(this.tableroJg[i][j].tipo =='M'){
+                        this.tableroJg[i][j].setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\tnt.jpg");
+                    }
+                    else{this.tableroJg[i][j].setFondo();}
+                    
                     this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                     this.tableroJg[i][j].setBounds(px,py,anchoPanel, altoPanel);
-                    if(i==0){
-                        
-                    this.tableroJg[i][j].setBackground(Color.red);
-                    }
-                    this.tableroJg[i][j].setBackground(Color.blue);
+                    
+                    
                     this.tableroJg[i][j].setVisible(true);
             }  
         }
@@ -207,6 +193,7 @@ public class Tablero extends javax.swing.JFrame {
             for(int i=0;i<ancho;i++){
                 for(int j=0; j<alto;j++){
                     this.tableroJg[i][j] = new Posicion(i,j,' ');
+                    getContentPane().add(this.tableroJg[i][j]);
                     
                      
             }
@@ -247,12 +234,10 @@ public class Tablero extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelCrear;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
