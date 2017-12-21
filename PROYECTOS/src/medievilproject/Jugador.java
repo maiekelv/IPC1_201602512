@@ -3,22 +3,23 @@ package medievilproject;
 
 public class Jugador {
     public String nombre;
-    public Ipersonaje personajes;
-    public String apellido;
+    public Mago mago;
+    public Princesa princesa;
+    public Guerrero guerrero;
+    
+    public String[] ordenJuego;
+    
+    
     
 public Jugador(){}
-public Jugador(String nombre,String apellido){
+public Jugador(String nombre, String[] ordenJuego){
     this.nombre = nombre;
-    this.apellido = apellido;
+    this.ordenJuego = ordenJuego;
 }
 
 public void setMostrarNombre(String nombre){
     this.nombre = nombre;
 }
-
-public void setMostrarApellido(String apellido){
-    this.apellido = apellido;
 }
 
-}
 

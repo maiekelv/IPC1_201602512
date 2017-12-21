@@ -6,22 +6,19 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class Posicion extends JPanel {
+/**
+ *
+ * @author Maiekel Vela
+ */
+public class TableroFondo extends JPanel {
     private Image fondo;
-    public int px;
-    public int py;
-    public char tipo;
+    
     
 
-    public Posicion(){}
-    public Posicion(int x, int y,char  tipo ){
-    this.px = x;
-    this.py = y;
-    this.tipo = tipo;
-}
+    
+
     public void paintComponent(Graphics g){
         int ancho = this.getSize().width;
         int alto = this.getSize().height;
@@ -45,36 +42,9 @@ public class Posicion extends JPanel {
     public void setFondo(){
         
         this.fondo = null;
-        this.setOpaque(false);
-        
         repaint();
         
         
     }
 
-    public int getpX() {
-        return px;
-    }
-
-    public int getpY() {
-        return py;
-    }
-
-    public char getTipo() {
-        return tipo;
-    }
-
-    public void setpX(int x) {
-        this.px = x;
-    }
-
-    public void setpY(int y) {
-        this.py = y;
-    }
-
-    public void setTipo(char tipo) {
-        this.tipo = tipo;
-    }
-
 }
-

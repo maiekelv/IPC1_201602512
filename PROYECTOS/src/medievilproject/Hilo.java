@@ -27,7 +27,8 @@ public class Hilo implements Runnable {
             }catch(InterruptedException ex){
                 Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE,null,ex);
             }
-            tableroJuego.imprimirTablero();
+            tableroJuego.repaint();
+            
         }
         
     }
