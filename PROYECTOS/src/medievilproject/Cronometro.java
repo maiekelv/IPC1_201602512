@@ -1,30 +1,54 @@
 
 package medievilproject;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JFrame;
 
-
-public class Cronometro extends JFrame implements Runnable, ActionListener {
-    public int minutos;
-    public int segundos;
-    
-public Cronometro(){}
-public Cronometro(int minutos, int segundos){
-    this.minutos = minutos;
-    this.segundos = segundos;
-}
-
+public class Cronometro extends Thread{
+    private Tablero v;
+    private int seg;
+    private int min;
+    private int hora;
+  
+    public Cronometro(Tablero v){
+        this.v=v;
+        seg = v.getSeg();
+        min = v.getMin();
+        hora = v.getHora();       
+    }
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-   
+        for (; ;){
+            if (seg!=0){
+                seg=v.aumentarSeg();
+            }else{
+                 seg=59;
+                 v.resetearSeg();
+                if(min!=0){            
+                    min=v.aumentarMin();
+                }else{
+                    hora=v.aumentarHora();
+                    min=0;
+                    v.resetearMin();
+                }           
+            }
+             try {
+                sleep(999);
+            } catch (InterruptedException ex) {
+                System.err.println(ex.getMessage());
+            }
+            if(!v.isContinuar()){
+                try {
+                    synchronized(this){
+                       this.wait(); 
+                    } 
+                } catch (InterruptedException ex) {
+                    System.err.println(ex.getMessage());
+                }
+            }    
+        }       
+    }    
+    public void seguir(){
+        synchronized(this){
+            notifyAll();
+        }
+    }   
 }
-

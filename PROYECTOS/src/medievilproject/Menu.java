@@ -6,8 +6,6 @@ public class Menu {
     public Cronometro cronometro;
     
 public Menu(){
-    this.cronometro.minutos = 0;
-    this.cronometro.segundos = 0;
 }
 
 public void mostrarMenu(){}
