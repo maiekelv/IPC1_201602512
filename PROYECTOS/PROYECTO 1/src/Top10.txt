@@ -1,0 +1,1 @@
+Nombre Jugador,mago,princesa,guerrero,1,3,26;Nombre Jugador,mago,princesa,guerrero,2,3,46;Nombre Jugador,mago,princesa,guerrero,1,2,55;Nombre Jugador,guerrero,princesa,mago,5,4,16;
