@@ -56,7 +56,7 @@ public void paintComponent(Graphics g){
     
     public void cambiarFondo(int numRandom){
         if(numRandom == 1){
-            setFondo("src\\corazonamor.png");
+            setFondo("src/corazonamor.png");
         }else{
             setFondo();
         }

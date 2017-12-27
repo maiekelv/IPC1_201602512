@@ -59,7 +59,7 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
     public Tablero() {
         initComponents();
         tableroPanel = new TableroFondo();
-        tableroPanel.setFondo("src\\tableroMedievil.jpg");
+        tableroPanel.setFondo("src/tableroMedievil.jpg");
         tableroPanel.setBounds(0 , 100,700,700);
         tableroPanel.setLayout(null);
         getContentPane().add(tableroPanel);
@@ -843,34 +843,34 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
                     
                     this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                     if(this.tableroJg[i][j].tipo == 'V'){
-                    this.tableroJg[i][j].setFondo("src\\corazonamor.png");
+                    this.tableroJg[i][j].setFondo("src/corazonamor.png");
                     }
                     else if(this.tableroJg[i][j].tipo =='M'){
-                        this.tableroJg[i][j].setFondo("src\\tnt.jpg");
+                        this.tableroJg[i][j].setFondo("src/tnt.jpg");
                     }
                     else if(this.tableroJg[i][j].tipo =='a'){
                         this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.blue, 5));
-                        this.tableroJg[i][j].setFondo("src\\Mago.jpg");
+                        this.tableroJg[i][j].setFondo("src/Mago.jpg");
                     }
                     else if(this.tableroJg[i][j].tipo =='b'){
                         this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.blue, 5));
-                        this.tableroJg[i][j].setFondo("src\\princesa.jpg");
+                        this.tableroJg[i][j].setFondo("src/princesa.jpg");
                     }
                     else if(this.tableroJg[i][j].tipo =='c'){
                         this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.blue, 5));
-                        this.tableroJg[i][j].setFondo("src\\Guerrero.jpg");
+                        this.tableroJg[i][j].setFondo("src/Guerrero.jpg");
                     }
                     else if(this.tableroJg[i][j].tipo =='d'){
                         this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.red, 5));
-                        this.tableroJg[i][j].setFondo("src\\Mago.jpg");
+                        this.tableroJg[i][j].setFondo("src/Mago.jpg");
                     }
                     else if(this.tableroJg[i][j].tipo =='e'){
                         this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.red, 5));
-                        this.tableroJg[i][j].setFondo("src\\princesa.jpg");
+                        this.tableroJg[i][j].setFondo("src/princesa.jpg");
                     }
                     else if(this.tableroJg[i][j].tipo =='f'){
                         this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.red, 5));
-                        this.tableroJg[i][j].setFondo("src\\Guerrero.jpg");
+                        this.tableroJg[i][j].setFondo("src/Guerrero.jpg");
                     }
                     else{this.tableroJg[i][j].setFondo();}
                     
@@ -1130,7 +1130,7 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
     }       
 
     public void guardarHistorialArchivo() throws IOException{
-        String ruta = "src\\Top10.txt";
+        String ruta = "src/Top10.txt";
         File archivo = new File(ruta);
         BufferedWriter bw;
         if(archivo.exists()) {
@@ -1169,7 +1169,7 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
     }
     public void cargarHistorial() throws FileNotFoundException, IOException{
         String cadena;
-        FileReader f = new FileReader( "src\\Top10.txt");
+        FileReader f = new FileReader( "src/Top10.txt");
         BufferedReader b = new BufferedReader(f);
         while((cadena = b.readLine())!=null) {
             String[] partes = cadena.split(";");

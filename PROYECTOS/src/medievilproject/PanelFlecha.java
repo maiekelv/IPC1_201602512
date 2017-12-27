@@ -57,13 +57,13 @@ public void paintComponent(Graphics g){
     
     public void cambiarFondo(int numRandom){
         if(numRandom == 1){
-            setFondo("src\\flechaarriba.png");
+            setFondo("src/flechaarriba.png");
         }else if(numRandom == 2){
-            setFondo("src\\flechaderecha.png");
+            setFondo("src/flechaderecha.png");
         }else if(numRandom == 3){
-            setFondo("src\\flechaabajo.png");
+            setFondo("src/flechaabajo.png");
         }else if(numRandom == 4){
-            setFondo("src\\flechaizquierda.png");            
+            setFondo("src/flechaizquierda.png");            
         }else{
             setFondo();
         }
