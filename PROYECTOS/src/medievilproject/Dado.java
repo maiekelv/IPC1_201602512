@@ -71,17 +71,17 @@ public void paintComponent(Graphics g){
     
     public void cambiarFondo(int numRandom){
         if(numRandom == 1){
-            setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\dadoface1.JPG");
+            setFondo("src\\dadoface1.JPG");
         }else if(numRandom == 2){
-            setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\dadoface2.JPG");
+            setFondo("src\\dadoface2.JPG");
         }else if(numRandom == 3){
-            setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\dadoface3.jpg");
+            setFondo("src\\dadoface3.jpg");
         }else if(numRandom == 4){
-            setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\dadoface4.JPG");
+            setFondo("src\\dadoface4.JPG");
         }else if(numRandom == 5){
-        setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\dadoface5.png");
+        setFondo("src\\dadoface5.png");
         }else if(numRandom == 6){
-        setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\dadoface6.JPG");
+        setFondo("src\\dadoface6.JPG");
         }
         
         

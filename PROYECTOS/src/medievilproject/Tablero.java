@@ -8,12 +8,21 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 
@@ -44,11 +53,13 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
     private Cronometro i;
     boolean predijo = false;
     public Record [] historial;
+    public int contadorHistorial;
+    
     
     public Tablero() {
         initComponents();
         tableroPanel = new TableroFondo();
-        tableroPanel.setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\tableroMedievil.jpg");
+        tableroPanel.setFondo("src\\tableroMedievil.jpg");
         tableroPanel.setBounds(0 , 100,700,700);
         tableroPanel.setLayout(null);
         getContentPane().add(tableroPanel);
@@ -71,8 +82,12 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
         this.panelVidaJ2 = new PanelVida [16];
         this.jPanel2.setLayout(null);
         this.labelGanador.setVisible(false);
-        this.historialhistorial = new Record[]*100;
-        
+        this.historial = new Record[1000];
+        this.contadorHistorial = 0;
+        try{
+        cargarHistorial();
+        }
+        catch(Exception e){}
     }  
     
     public void mostrarVidaJugador(){
@@ -144,12 +159,15 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
         jLabel9 = new javax.swing.JLabel();
         checkBoxAtacar = new javax.swing.JCheckBox();
         labelGanador = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -419,7 +437,15 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
         labelGanador.setForeground(new java.awt.Color(255, 51, 51));
         labelGanador.setText("jLabel7");
         getContentPane().add(labelGanador);
-        labelGanador.setBounds(770, 820, 330, 90);
+        labelGanador.setBounds(770, 820, 850, 90);
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(1200, 60, 410, 720);
 
         jMenu1.setText("Archivo");
         jMenu1.add(jSeparator1);
@@ -433,10 +459,18 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
         });
         jMenu1.add(jMenuItem3);
 
-        jMenuBar1.add(jMenu1);
+        jMenuItem1.setText("Mostrar Historial");
+        jMenu1.add(jMenuItem1);
 
-        jMenu2.setText("Salir");
-        jMenuBar1.add(jMenu2);
+        jMenuItem2.setText("Salir");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -659,6 +693,11 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
     private void checkBoxAtacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxAtacarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkBoxAtacarActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
      
     public void realizarMovimiento(Posicion actual,Posicion siguiente,int restantes){
         if(siguiente.px==-1||siguiente.py==-1){
@@ -766,6 +805,13 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
             labelGanador.setText(this.jugadores[1].nombre + " ha Ganado");
             parar();
             jButtonTirar.setVisible(false);
+            Record nuevoRecord = new Record(this.jugadores[1].nombre, this.jugadores[1].ordenJuego, this.jugadores[1].vidas, this.min , this.seg);
+            this.historial [this.contadorHistorial] = nuevoRecord;
+            this.contadorHistorial++;
+            try{
+            guardarHistorialArchivo();
+            }
+            catch(Exception e){}
         
         }
         else if(this.jugadores[1].vidas<1){
@@ -773,6 +819,13 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
             labelGanador.setText(this.jugadores[0].nombre + " ha Ganado");
             parar();
             jButtonTirar.setVisible(false);
+            Record nuevoRecord = new Record(this.jugadores[0].nombre, this.jugadores[0].ordenJuego, this.jugadores[0].vidas, this.min , this.seg);
+            this.historial [this.contadorHistorial] = nuevoRecord;
+            this.contadorHistorial++;
+            try{
+            guardarHistorialArchivo();
+            }
+            catch(Exception e){}
         }
         else{
             labelGanador.setVisible(false);
@@ -790,34 +843,34 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
                     
                     this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                     if(this.tableroJg[i][j].tipo == 'V'){
-                    this.tableroJg[i][j].setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\corazonamor.png");
+                    this.tableroJg[i][j].setFondo("src\\corazonamor.png");
                     }
                     else if(this.tableroJg[i][j].tipo =='M'){
-                        this.tableroJg[i][j].setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\tnt.jpg");
+                        this.tableroJg[i][j].setFondo("src\\tnt.jpg");
                     }
                     else if(this.tableroJg[i][j].tipo =='a'){
                         this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.blue, 5));
-                        this.tableroJg[i][j].setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\Mago.jpg");
+                        this.tableroJg[i][j].setFondo("src\\Mago.jpg");
                     }
                     else if(this.tableroJg[i][j].tipo =='b'){
                         this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.blue, 5));
-                        this.tableroJg[i][j].setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\princesa.jpg");
+                        this.tableroJg[i][j].setFondo("src\\princesa.jpg");
                     }
                     else if(this.tableroJg[i][j].tipo =='c'){
                         this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.blue, 5));
-                        this.tableroJg[i][j].setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\Guerrero.jpg");
+                        this.tableroJg[i][j].setFondo("src\\Guerrero.jpg");
                     }
                     else if(this.tableroJg[i][j].tipo =='d'){
                         this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.red, 5));
-                        this.tableroJg[i][j].setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\Mago.jpg");
+                        this.tableroJg[i][j].setFondo("src\\Mago.jpg");
                     }
                     else if(this.tableroJg[i][j].tipo =='e'){
                         this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.red, 5));
-                        this.tableroJg[i][j].setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\princesa.jpg");
+                        this.tableroJg[i][j].setFondo("src\\princesa.jpg");
                     }
                     else if(this.tableroJg[i][j].tipo =='f'){
                         this.tableroJg[i][j].setBorder(BorderFactory.createLineBorder(Color.red, 5));
-                        this.tableroJg[i][j].setFondo("C:\\Users\\Maiekel Vela\\Desktop\\Imagenes Medievil\\Guerrero.jpg");
+                        this.tableroJg[i][j].setFondo("src\\Guerrero.jpg");
                     }
                     else{this.tableroJg[i][j].setFondo();}
                     
@@ -1000,15 +1053,18 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     public javax.swing.JPanel jPanelCrear;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -1073,4 +1129,79 @@ public class Tablero extends javax.swing.JFrame implements Runnable {
         return continuar;
     }       
 
+    public void guardarHistorialArchivo() throws IOException{
+        String ruta = "src\\Top10.txt";
+        File archivo = new File(ruta);
+        BufferedWriter bw;
+        if(archivo.exists()) {
+            bw = new BufferedWriter(new FileWriter(archivo));
+            int contadorRec = 0;
+            while(contadorRec<this.contadorHistorial){
+                String fila = "";
+                fila= fila + this.historial[contadorRec].nombre+",";
+                fila= fila + this.historial[contadorRec].ordenJuego[0]+",";
+                fila= fila + this.historial[contadorRec].ordenJuego[1]+",";
+                fila= fila + this.historial[contadorRec].ordenJuego[2]+",";
+                fila= fila + this.historial[contadorRec].ganadorNumeroVidas+",";
+                fila= fila + this.historial[contadorRec].minutosPartida+",";
+                fila= fila + this.historial[contadorRec].segundoPartida+";";
+                bw.write(fila);
+                contadorRec++;
+            }
+        } else {
+            bw = new BufferedWriter(new FileWriter(archivo));
+            int contadorRec = 0;
+            while(contadorRec<this.contadorHistorial){
+                String fila = "";
+                fila= fila + this.historial[contadorRec].nombre+",";
+                fila= fila + this.historial[contadorRec].ordenJuego[0]+",";
+                fila= fila + this.historial[contadorRec].ordenJuego[1]+",";
+                fila= fila + this.historial[contadorRec].ordenJuego[2]+",";
+                fila= fila + this.historial[contadorRec].ganadorNumeroVidas+",";
+                fila= fila + this.historial[contadorRec].minutosPartida+",";
+                fila= fila + this.historial[contadorRec].segundoPartida+";";
+                bw.write(fila);
+                contadorRec++;
+            }
+        }
+        bw.close();
+        mostrarHistorial();
+    }
+    public void cargarHistorial() throws FileNotFoundException, IOException{
+        String cadena;
+        FileReader f = new FileReader( "src\\Top10.txt");
+        BufferedReader b = new BufferedReader(f);
+        while((cadena = b.readLine())!=null) {
+            String[] partes = cadena.split(";");
+            for(int i=0;i<partes.length;i++){
+                String[] datos = partes[i].split(",");
+                String[] orden = new String[3];
+                orden[0] = datos[1];
+                orden[1] = datos[2];
+                orden[2] = datos[3];
+                this.historial[this.contadorHistorial] = new Record(datos[0],orden,Integer.parseInt(datos[4]),Integer.parseInt(datos[5]),Integer.parseInt(datos[6]));
+                this.contadorHistorial++;
+            }
+        }
+        b.close();
+        mostrarHistorial();
+    }
+    public void mostrarHistorial(){
+        String header = "Nombre     ,Cartas                         ,Vidas,Min,Seg\r\n";
+        for(int i =0;i<this.contadorHistorial;i++){
+         String fila = "";
+                fila= fila + this.historial[i].nombre+",";
+                fila= fila + this.historial[i].ordenJuego[0]+"-";
+                fila= fila + this.historial[i].ordenJuego[1]+"-";
+                fila= fila + this.historial[i].ordenJuego[2]+",";
+                fila= fila + this.historial[i].ganadorNumeroVidas+",";
+                fila= fila + this.historial[i].minutosPartida+",";
+                fila= fila + this.historial[i].segundoPartida+"\r\n";
+         header=header+fila;
+        }
+        jTextArea1.setText(header);
+    }
 }
+     
+
+
