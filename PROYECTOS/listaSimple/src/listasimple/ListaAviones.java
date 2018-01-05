@@ -6,16 +6,20 @@
 package listasimple;
 
 
-public class Lista {
+/**
+ *
+ * @author Maiekel Vela
+ */
+public class ListaAviones {
     public String nombre;
     public Nodo ini;
     public Nodo fin;
     
-    public Lista(String nombre){
+    public ListaAviones(String nombre){
         this.nombre = nombre;
         ini=fin=null;
     }
-    public Lista(){
+    public ListaAviones(){
         this("Lista");
     }
     public boolean estaVacia(){
@@ -26,14 +30,14 @@ public class Lista {
         ini=fin=new Nodo(null,null,dato);
     else{
         Nodo nuevo=new Nodo(ini,null,dato);
-        
+        ini.anterior = nuevo;
         ini=nuevo;
 }}
     public void InsertarAlFinal(Object dato){
     if(estaVacia())
         ini=fin=new Nodo(null,null,dato);
     else{
-        Nodo nuevo=new Nodo(null,null,dato);
+        Nodo nuevo=new Nodo(null,fin,dato);
         fin.siguiente = nuevo;
         fin=nuevo;
     }
@@ -50,10 +54,17 @@ public class Lista {
         throw new ExceptionListaVacia(nombre);
         java.lang.Object datoEliminado = ini.data;
         
+        Nodo resultado = ini;
         
-    if(ini==fin)
+    if(ini==fin){
+        ini=null;
+        fin=null;
+    }
+    else{
         ini=ini.siguiente;
-    return (Object) datoEliminado;
+        ini.anterior = null;
+    }
+    return resultado;
 }
     public Object removerDelFinal()throws ExceptionListaVacia{
         if(estaVacia())
@@ -83,4 +94,4 @@ public class Lista {
         private ExceptionListaVacia(String nombre) {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }}
-}
+    }

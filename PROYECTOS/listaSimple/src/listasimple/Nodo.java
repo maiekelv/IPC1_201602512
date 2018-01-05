@@ -15,6 +15,10 @@ public class Nodo {
     setDato(data);
     setAnterior(anterior);
     }
+
+    Nodo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
         
     public void setSiguiente(Nodo siguiente){
@@ -40,6 +44,10 @@ public class Nodo {
     }
 
     Nodo(Object dato, Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void setValor(int valor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

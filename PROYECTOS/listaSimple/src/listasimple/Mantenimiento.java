@@ -10,7 +10,13 @@ package listasimple;
  * @author Maiekel Vela
  */
 public class Mantenimiento {
-    public int cantidadEstaciones;
     public int Estado; //1 para ocupado y 2 para libre**
     public int turnosRestantes;
+    public int identificador;
+    
+    public Mantenimiento(int identificador){
+    this.identificador = identificador;
+    this.Estado = 2;
+    this.turnosRestantes = 0;
+    }
 }

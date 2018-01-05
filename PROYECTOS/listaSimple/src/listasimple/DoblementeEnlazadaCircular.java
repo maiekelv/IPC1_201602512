@@ -24,8 +24,8 @@ public class DoblementeEnlazadaCircular {
         actual.anterior=actual;
         }else{
         Nodo nuevo = new Nodo(actual.siguiente, actual, objeto);
+        actual.siguiente.anterior = nuevo;
         actual.siguiente = nuevo;
-        actual.anterior.anterior = nuevo;
         }contadorElementos++;
     }
     public Nodo pop() throws Exception{

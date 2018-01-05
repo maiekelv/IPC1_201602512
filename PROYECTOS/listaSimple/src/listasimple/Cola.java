@@ -6,10 +6,26 @@ public class Cola {
     Nodo ini;
     Nodo fin;
     
+    
 public Cola(){
     this.ini = null;
     this.fin = null;
 }
+
+public int obtenerNumeroElementos(){
+ int resultado = 0;
+ if(ini!=null){
+     resultado++;
+     Nodo actual = ini;
+     while(actual.siguiente!= null){
+     resultado++;
+     actual = actual.siguiente;
+     }
+     
+ }
+ return resultado;
+}
+
 public boolean estaVacia(){
     if (this.ini==null&&this.fin==null){
     return true;
@@ -28,6 +44,7 @@ public void encolar(Object objeto){
         fin=nuevo;
         }
 }
+
 public Nodo descolar()throws Exception{
      if(estaVacia()){
         throw new UnsupportedOperationException("Cola esta Vacia"); //To change body of generated methods, choose Tools | Templates.
@@ -43,6 +60,7 @@ public Nodo descolar()throws Exception{
          return resultado;
      }
 }
+
     public void recorrer(){
         if(estaVacia()){
         System.out.println("Cola Vacia");
@@ -55,4 +73,5 @@ public Nodo descolar()throws Exception{
         }
         }
     }
+    
 }

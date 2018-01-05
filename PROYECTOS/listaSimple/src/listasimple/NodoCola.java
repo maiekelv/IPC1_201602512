@@ -11,6 +11,7 @@ public class NodoCola {
     public Object data;
     public Cola cola;
     public int orden;
+    public Pila documentos;
     
     public NodoCola(NodoCola siguiente, NodoCola anterior, Object data, int orden){
     cola = new Cola();
@@ -18,6 +19,7 @@ public class NodoCola {
     setDato(data);
     setAnterior(anterior);
     this.orden = orden;
+    this.documentos = new Pila();
     }
     public void setOrden(int orden){
     this.orden = orden;
@@ -31,7 +33,7 @@ public class NodoCola {
         this.anterior = anterior;
     }
 
-    public void setData(Object data) {
+    public void setDato(Object data) {
         this.data = data;
     }
 
@@ -60,7 +62,4 @@ public class NodoCola {
         return cola;
     }
 
-    private void setDato(Object data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

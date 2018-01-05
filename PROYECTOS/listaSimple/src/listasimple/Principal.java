@@ -3,24 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
 package listasimple;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author Maiekel Vela
- */
+
 public class Principal extends javax.swing.JFrame {
-
-    ListaSimple aviones;
+    int pasajerosCreados;
+    int maletasCreadas;
+    ListaAviones aviones;
     Cola desabordaje;
     ListaOrdenada escritorios;
     DoblementeEnlazadaCircular equipaje;
-    ListaSimple mantenimiento;
-    Cola colaMantenimiento;
+    Lista mantenimiento;
+    ListaAviones colaMantenimiento;
     int avionesRestantes;
     int numeroEscritorios;
     int numeroMantenimiento;
     int contadorTurnos;
+    int idAviones;
+    Hilo repintar;
     public Principal() {
         initComponents();
         
@@ -50,10 +56,17 @@ public class Principal extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButtonSiguiente.setText("Siguiente");
+        jButtonSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSiguienteActionPerformed(evt);
+            }
+        });
 
         jButtonTerminar.setText("Terminar");
 
@@ -65,11 +78,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 482, Short.MAX_VALUE)
+            .addGap(0, 1082, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 892, Short.MAX_VALUE)
         );
 
         jButtonIniciar.setText("Iniciar");
@@ -91,67 +104,89 @@ public class Principal extends javax.swing.JFrame {
 
         jTextField3.setText("4");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonIniciar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonSiguiente))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButtonTerminar))))
-                .addContainerGap(246, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSiguiente)
-                    .addComponent(jButtonTerminar)
-                    .addComponent(jButtonIniciar))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        jLabel4.setText("Ruta a Dot.exe");
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+        jTextField4.setText("C:\\Program Files (x86)\\Graphviz2.38\\bin\\");
+            jTextField4.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jTextField4ActionPerformed(evt);
+                }
+            });
+
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(80, 80, 80)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(11, 11, 11)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jButtonIniciar)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jButtonSiguiente))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(10, 10, 10)
+                                            .addComponent(jLabel1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(12, 12, 12)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel2)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jLabel3)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jButtonTerminar)))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(499, 499, 499)
+                            .addComponent(jLabel4)
+                            .addGap(38, 38, 38)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(28, 28, 28)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonSiguiente)
+                        .addComponent(jButtonTerminar)
+                        .addComponent(jButtonIniciar))
+                    .addGap(9, 9, 9)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap())
+            );
+
+            pack();
+        }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
         // TODO add your handling code here
@@ -159,12 +194,15 @@ public class Principal extends javax.swing.JFrame {
     this.numeroEscritorios = Integer.parseInt(jTextField2.getText());
     this.numeroMantenimiento = Integer.parseInt(jTextField3.getText());
     this.contadorTurnos = 0;
-    this.aviones = new ListaSimple();
+    this.pasajerosCreados = 1;
+    this.maletasCreadas = 1;
+    this.aviones = new ListaAviones();
     this.desabordaje = new Cola();
     this.escritorios = new ListaOrdenada();
     this.equipaje = new DoblementeEnlazadaCircular();
-    this.mantenimiento = new ListaSimple();
-    this.colaMantenimiento = new Cola();
+    this.mantenimiento = new Lista();
+    this.colaMantenimiento = new ListaAviones();
+    this.idAviones = 1;
     jButtonIniciar.setVisible(false);
     jButtonSiguiente.setVisible(true);
     jButtonTerminar.setVisible(true);
@@ -174,11 +212,349 @@ public class Principal extends javax.swing.JFrame {
     jTextField2.setVisible(false);
     jLabel3.setVisible(false);
     jTextField3.setVisible(false);
+    int contadorEscritoriosCreados = 1;
+    if(numeroEscritorios>26){numeroEscritorios = 26;}
+    while(contadorEscritoriosCreados<=numeroEscritorios){
+    EscritorioRegistro nuevoEscritorio = new EscritorioRegistro(contadorEscritoriosCreados);
+    this.escritorios.insertarAlFinal(nuevoEscritorio);
+    contadorEscritoriosCreados++;
+    }
+    int contadorMantenimientosCreados = 1;
+    while(contadorMantenimientosCreados<=numeroMantenimiento){
+    Mantenimiento nuevoMantenimiento = new Mantenimiento(contadorMantenimientosCreados);
+    this.mantenimiento.InsertarAlFinal(nuevoMantenimiento);
+    contadorMantenimientosCreados++;
+    }
+    
     
     
     
     }//GEN-LAST:event_jButtonIniciarActionPerformed
 
+    private void jButtonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSiguienteActionPerformed
+    if(aviones.ini!=null){
+        Avion avionalFrente = (Avion) aviones.ini.data;
+        avionalFrente.turnosDesabordaje--;
+        if(avionalFrente.turnosDesabordaje==0){
+            try{
+            aviones.removerDelFrente();
+            }
+            catch(Exception e){
+
+                    }
+            int contadorNuevosPasajeros = avionalFrente.pasajeros;
+            while(contadorNuevosPasajeros>0){
+                Pasajero nuevoPasajero = new Pasajero(this.pasajerosCreados);
+                int contadorMaletasPasajero = nuevoPasajero.cantidadMaletas;
+                while(contadorMaletasPasajero>0){
+                    Equipaje nuevoEquipaje = new Equipaje(maletasCreadas);
+                    equipaje.push(nuevoEquipaje);
+                    maletasCreadas++;
+                    contadorMaletasPasajero--;
+                }
+                this.desabordaje.encolar(nuevoPasajero);
+                this.pasajerosCreados++;
+                contadorNuevosPasajeros--;
+            }
+            
+            this.colaMantenimiento.InsertarAlFinal(avionalFrente);
+        }
+        else{
+            aviones.ini.data = (Object) avionalFrente;
+        }
+    }
+     if(avionesRestantes>0){
+     int numero = (int)(Math.random()*2)+1;
+     System.out.println(numero);
+     Avion nuevoAvion = new Avion(numero, idAviones);
+     idAviones++;
+     avionesRestantes--;
+     aviones.InsertarAlFinal((Object) nuevoAvion);
+     
+    }
+    
+    mostrarEstado();
+    escribirArchivo();
+    generarImagen();
+    try{
+                Thread.sleep(1000);
+            }catch(InterruptedException ex){
+                Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE,null,ex);
+            }
+    repintarImagen();
+    
+    }//GEN-LAST:event_jButtonSiguienteActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+    public void generarImagen(){
+    try {
+      
+      String dotPath = jTextField4.getText()+"dot.exe";
+      
+      String fileInputPath = System.getProperty("user.dir")+"\\grafo1.txt";
+      String fileOutputPath = System.getProperty("user.dir")+"\\grafo1.jpg";
+      
+      String tParam = "-Tjpg";
+      String tOParam = "-o";
+        
+      String[] cmd = new String[5];
+      cmd[0] = dotPath;
+      cmd[1] = tParam;
+      cmd[2] = fileInputPath;
+      cmd[3] = tOParam;
+      cmd[4] = fileOutputPath;
+                  
+      Runtime rt = Runtime.getRuntime();
+      
+      rt.exec( cmd );
+      
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    } finally {
+    }
+    }
+    
+    public void escribirArchivo(){
+    try
+    {
+    //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
+    File archivob=new File(System.getProperty("user.dir")+"\\grafo1.txt");
+    archivob.delete();
+    File archivo=new File(System.getProperty("user.dir")+"\\grafo1.txt");
+    //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
+    FileWriter escribir=new FileWriter(archivo,true);
+
+    //Escribimos en el archivo con el metodo write 
+    escribir.write("digraph G\r\n{\r\n");
+    escribir.write(generarGraphvizAvion());
+    escribir.write(generarGraphvizDesabordaje());
+    escribir.write(generarGraphvizEquipaje());
+    escribir.write(generarGraphvizMantenimiento());
+    escribir.write(generarGraphvizAvionVacio());
+    
+    escribir.write("}\r\n");
+
+    //Cerramos la conexion
+    escribir.close();
+    }
+
+    //Si existe un problema al escribir cae aqui
+    catch(Exception e)
+    {
+    System.out.println("Error al escribir");
+    }
+    
+    }
+    
+    public String generarGraphvizEquipaje(){
+        String resultadoDef = "";
+        String resultadoLineas = "";
+        equipaje.recorrer();
+        if(!equipaje.estaVacia()){
+            Nodo nodoActualM = equipaje.actual;
+            Equipaje maletaActual = (Equipaje) nodoActualM.data;
+            
+            resultadoDef += "Maleta"+maletaActual.identificador+"[shape=box];\r\n";
+            
+            
+            Nodo nodoSM = equipaje.actual.siguiente;
+            Equipaje maletaS = (Equipaje) nodoSM.data;
+            resultadoLineas += "Maleta"+maletaActual.identificador+"->"+"Maleta"+maletaS.identificador+";\r\n";
+            
+            Nodo nodoSA = equipaje.actual.anterior;
+            Equipaje maletaA = (Equipaje) nodoSA.data;
+            resultadoLineas += "Maleta"+maletaActual.identificador+"->"+"Maleta"+maletaA.identificador+";\r\n";
+            
+            int contadorRecorrer=1;
+            while(contadorRecorrer<equipaje.contadorElementos){
+                
+                 nodoActualM = nodoActualM.siguiente;
+             maletaActual = (Equipaje) nodoActualM.data;
+            
+            resultadoDef += "Maleta"+maletaActual.identificador+"[shape=box];\r\n";
+            
+            
+             nodoSM = nodoActualM.siguiente;
+             maletaS = (Equipaje) nodoSM.data;
+            resultadoLineas += "Maleta"+maletaActual.identificador+"->"+"Maleta"+maletaS.identificador+";\r\n";
+            
+             nodoSA = nodoActualM.anterior;
+             maletaA = (Equipaje) nodoSA.data;
+            resultadoLineas += "Maleta"+maletaActual.identificador+"->"+"Maleta"+maletaA.identificador+";\r\n";
+            contadorRecorrer++;
+            }
+        }
+        
+        return resultadoDef+resultadoLineas;
+    }
+    public String generarGraphvizAvion(){
+        String resultadoDef = "";
+        String resultadoLineas = "";
+        if(!aviones.estaVacia()){
+            Nodo avionNodo =aviones.ini;
+            Avion avion= (Avion)avionNodo.data;
+            resultadoDef += "avion"+avion.id+";\r\n";
+            
+            if(avionNodo.siguiente!=null){
+                Nodo avionNodoS =aviones.ini.siguiente;
+                Avion avionS= (Avion)avionNodoS.data;
+                resultadoLineas += "avion"+avion.id+"->"+"avion"+avionS.id+";\r\n";
+            }
+            if(avionNodo.anterior!=null){
+                Nodo avionNodoA =aviones.ini.anterior;
+                Avion avionA= (Avion)avionNodoA.data;
+                resultadoLineas += "avion"+avion.id+"->"+"avion"+avionA.id+";\r\n";
+            }
+            while(avionNodo.siguiente!=null){
+                avionNodo =avionNodo.siguiente;
+                avion= (Avion)avionNodo.data;
+                resultadoDef += "avion"+avion.id+";\r\n";
+
+                if(avionNodo.siguiente!=null){
+                    Nodo avionNodoS =avionNodo.siguiente;
+                    Avion avionS= (Avion)avionNodoS.data;
+                    resultadoLineas += "avion"+avion.id+"->"+"avion"+avionS.id+";\r\n";
+                }
+                if(avionNodo.anterior!=null){
+                    Nodo avionNodoA =avionNodo.anterior;
+                    Avion avionA= (Avion)avionNodoA.data;
+                    resultadoLineas += "avion"+avion.id+"->"+"avion"+avionA.id+";\r\n";
+                }
+            }
+            
+        }
+        
+        return resultadoDef+resultadoLineas;
+    }
+     public String generarGraphvizAvionVacio(){
+        String resultadoDef = "";
+        String resultadoLineas = "";
+        if(!colaMantenimiento.estaVacia()){
+            Nodo avionNodo =colaMantenimiento.ini;
+            Avion avion= (Avion)avionNodo.data;
+            resultadoDef += "avionVacio"+avion.id+";\r\n";
+            
+            if(avionNodo.siguiente!=null){
+                Nodo avionNodoS =colaMantenimiento.ini.siguiente;
+                Avion avionS= (Avion)avionNodoS.data;
+                resultadoLineas += "avionVacio"+avion.id+"->"+"avionVacio"+avionS.id+";\r\n";
+            }
+            if(avionNodo.anterior!=null){
+                Nodo avionNodoA =colaMantenimiento.ini.anterior;
+                Avion avionA= (Avion)avionNodoA.data;
+                resultadoLineas += "avionVacio"+avion.id+"->"+"avionVacio"+avionA.id+";\r\n";
+            }
+            while(avionNodo.siguiente!=null){
+                avionNodo =avionNodo.siguiente;
+                avion= (Avion)avionNodo.data;
+                resultadoDef += "avionVacio"+avion.id+";\r\n";
+
+                if(avionNodo.siguiente!=null){
+                    Nodo avionNodoS =avionNodo.siguiente;
+                    Avion avionS= (Avion)avionNodoS.data;
+                    resultadoLineas += "avionVacio"+avion.id+"->"+"avionVacio"+avionS.id+";\r\n";
+                }
+                if(avionNodo.anterior!=null){
+                    Nodo avionNodoA =avionNodo.anterior;
+                    Avion avionA= (Avion)avionNodoA.data;
+                    resultadoLineas += "avionVacio"+avion.id+"->"+"avionVacio"+avionA.id+";\r\n";
+                }
+            }
+            
+        }
+        
+        return resultadoDef+resultadoLineas;
+    }
+    public String generarGraphvizMantenimiento(){
+        String resultadoDef = "";
+        String resultadoLineas = "";
+        if(!mantenimiento.estaVacia()){
+            Nodo mantNodo =mantenimiento.ini;
+            Mantenimiento mantenimientoO= (Mantenimiento)mantNodo.data;
+            resultadoDef += "Estacion"+mantenimientoO.identificador+"[shape=box];\r\n";
+            
+            if(mantNodo.siguiente!=null){
+                Nodo mantNodoS =mantenimiento.ini.siguiente;
+                Mantenimiento mantS= (Mantenimiento)mantNodoS.data;
+                resultadoLineas += "Estacion"+mantenimientoO.identificador+"->"+"Estacion"+mantS.identificador+";\r\n";
+            }
+            
+            while(mantNodo.siguiente!=null){
+                mantNodo =mantNodo.siguiente;
+                mantenimientoO= (Mantenimiento)mantNodo.data;
+            resultadoDef += "Estacion"+mantenimientoO.identificador+"[shape=box];\r\n";
+            
+            if(mantNodo.siguiente!=null){
+                Nodo mantNodoS =mantNodo.siguiente;
+                Mantenimiento mantS= (Mantenimiento)mantNodoS.data;
+                resultadoLineas += "Estacion"+mantenimientoO.identificador+"->"+"Estacion"+mantS.identificador+";\r\n";
+            }
+            }
+            
+        }
+        
+        return resultadoDef+resultadoLineas;
+    }
+    public String generarGraphvizDesabordaje(){
+        String resultadoDef = "";
+        String resultadoLineas = "";
+        if(!desabordaje.estaVacia()){
+            Nodo pasNodo =desabordaje.ini;
+            Pasajero pasaO= (Pasajero)pasNodo.data;
+            resultadoDef += "Pasajero"+pasaO.identificacion+";\r\n";
+            
+            if(pasNodo.siguiente!=null){
+                Nodo pasNodoS =desabordaje.ini.siguiente;
+                Pasajero pasS= (Pasajero)pasNodoS.data;
+                resultadoLineas += "Pasajero"+pasaO.identificacion+"->"+"Pasajero"+pasS.identificacion+";\r\n";
+            }
+            
+            while(pasNodo.siguiente!=null){
+                pasNodo =pasNodo.siguiente;
+                pasaO= (Pasajero)pasNodo.data;
+            resultadoDef += "Pasajero"+pasaO.identificacion+";\r\n";
+            
+            if(pasNodo.siguiente!=null){
+                Nodo pasNodoS =pasNodo.siguiente;
+                Pasajero pasS= (Pasajero)pasNodoS.data;
+                resultadoLineas += "Pasajero"+pasaO.identificacion+"->"+"Pasajero"+pasS.identificacion+";\r\n";
+            }
+            }
+            
+        }
+        
+        return resultadoDef+resultadoLineas;
+    }
+    
+    public void repintarImagen(){
+        jPanel1.removeAll();
+        TableroFondo imagen = new TableroFondo();
+        imagen.setFondo(System.getProperty("user.dir")+"\\grafo1.jpg");
+        jPanel1.setLayout(null);
+        imagen.setBounds(0, 0, 976, 785);
+        jPanel1.add(imagen);
+        jPanel1.repaint();
+        jPanel1.setVisible(true);
+    
+    }
+    
+    
+    public void mostrarEstado(){
+    String texto="***********AVIONES*********\n\r";
+    if(this.aviones.ini!=null){
+    Nodo nodoAvionActual = this.aviones.ini;
+    Avion avionActual = (Avion)nodoAvionActual.data;
+    texto = texto+"Id:"+ avionActual.id+"-Tipo:"+avionActual.tipo+"Turno Desabordaje"+avionActual.turnosDesabordaje+"Turno Mantenimiento"+avionActual.turnosMantenimiento+"Pasajeros"+avionActual.pasajeros+"\n\r";
+    while(nodoAvionActual.siguiente!=null){
+    nodoAvionActual = nodoAvionActual.siguiente;
+    avionActual = (Avion)nodoAvionActual.data;
+    texto = texto+"Id:"+ avionActual.id+"-Tipo:"+avionActual.tipo+"Turno Desabordaje"+avionActual.turnosDesabordaje+"Turno Mantenimiento"+avionActual.turnosMantenimiento+"Pasajeros"+avionActual.pasajeros+"\n\r";
+    }
+    }
+    jTextArea1.setText(texto);
+    }
     /**
      * @param args the command line arguments
      */
@@ -221,11 +597,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

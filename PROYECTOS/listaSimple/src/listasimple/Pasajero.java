@@ -15,8 +15,8 @@ public class Pasajero {
     this.identificacion = identificacion;
         
     
-    this.cantidadMaletas = (int)(Math.random()+4)+1;
-    this.cantidadDocumentos = (int)(Math.random()+10)+1;
-    this.turnoRegistro = (int)(Math.random()+3)+1;
+    this.cantidadMaletas = (int)(Math.random()*3)+1;
+    this.cantidadDocumentos = (int)(Math.random()*9)+1;
+    this.turnoRegistro = (int)(Math.random()*2)+1;
     }
 }
