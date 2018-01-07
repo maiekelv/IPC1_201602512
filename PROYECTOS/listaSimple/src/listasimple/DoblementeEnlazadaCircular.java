@@ -30,6 +30,7 @@ public class DoblementeEnlazadaCircular {
     }
     public Nodo pop() throws Exception{
      if(estaVacia()){
+         contadorElementos=0;
         throw new UnsupportedOperationException("Esta Vacia"); //To change body of generated methods, choose Tools | Templates.
         }else{
          Nodo resultado = actual;
@@ -39,6 +40,7 @@ public class DoblementeEnlazadaCircular {
          }else{
          actual.siguiente.anterior = actual.anterior;
          actual.anterior.siguiente = actual.siguiente;
+         actual=actual.siguiente;
          }
          return resultado;
      }
@@ -48,11 +50,9 @@ public class DoblementeEnlazadaCircular {
         System.out.println("Esta Vacia");
         }else{
         Nodo nodoActual = actual;
-        System.out.println(nodoActual.data.toString());
         int contadorRecorrer=1;
         while(contadorRecorrer<contadorElementos){
         nodoActual = nodoActual.siguiente;
-        System.out.println(nodoActual.data.toString());
         contadorRecorrer++;
         }
         }

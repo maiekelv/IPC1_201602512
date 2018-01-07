@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 public class Principal extends javax.swing.JFrame {
     int pasajerosCreados;
     int maletasCreadas;
+    int maletasDebug;
     ListaAviones aviones;
     Cola desabordaje;
     ListaOrdenada escritorios;
@@ -74,6 +75,8 @@ public class Principal extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        jPanel1.setMaximumSize(new java.awt.Dimension(35000, 35000));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -103,6 +106,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setText("Mantenimiento");
 
         jTextField3.setText("4");
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Ruta a Dot.exe");
 
@@ -120,55 +128,50 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(80, 80, 80)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(11, 11, 11)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jButtonIniciar)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jButtonSiguiente))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(10, 10, 10)
-                                            .addComponent(jLabel1)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(12, 12, 12)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jLabel3)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jButtonTerminar)))))
+                            .addGap(20, 20, 20)
+                            .addComponent(jButtonIniciar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButtonSiguiente))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(499, 499, 499)
+                            .addGap(34, 34, 34)
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel3)
+                            .addGap(18, 18, 18)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jButtonTerminar)
+                            .addGap(228, 228, 228)
                             .addComponent(jLabel4)
                             .addGap(38, 38, 38)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(34, 34, 34))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(28, 28, 28)
+                    .addGap(27, 27, 27)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonIniciar)
                         .addComponent(jButtonSiguiente)
-                        .addComponent(jButtonTerminar)
-                        .addComponent(jButtonIniciar))
-                    .addGap(9, 9, 9)
+                        .addComponent(jButtonTerminar))
+                    .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,9 +179,9 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3)
                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
+                    .addGap(31, 31, 31)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(0, 0, Short.MAX_VALUE)))
@@ -196,6 +199,7 @@ public class Principal extends javax.swing.JFrame {
     this.contadorTurnos = 0;
     this.pasajerosCreados = 1;
     this.maletasCreadas = 1;
+    maletasDebug=0;
     this.aviones = new ListaAviones();
     this.desabordaje = new Cola();
     this.escritorios = new ListaOrdenada();
@@ -229,26 +233,186 @@ public class Principal extends javax.swing.JFrame {
     
     
     
+    
     }//GEN-LAST:event_jButtonIniciarActionPerformed
 
     private void jButtonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSiguienteActionPerformed
-    if(aviones.ini!=null){
+    
+        String acciones = "";
+        if(escritorios.ini!=null){
+            NodoCola nodoEscVer = escritorios.ini;
+            EscritorioRegistro escVer = (EscritorioRegistro)nodoEscVer.data;
+            escVer.turnosRestantes--;
+            escVer.turnosRestantes = ((escVer.turnosRestantes<1)? 0: escVer.turnosRestantes);
+            if(escVer.turnosRestantes<1 && escVer.pasajero!=null){
+                int contadorDocumentos = escVer.cantidadDocARegistrar;
+                if(escVer.pasajero.identificacion!=0){
+                acciones+="Escritorio "+ escVer.identificador+" registro "+contadorDocumentos+" Documentos de pasajero "+ escVer.pasajero.identificacion+"\r\n";
+                }
+                while(contadorDocumentos>0){
+                    nodoEscVer.documentos.push(1);
+
+                    contadorDocumentos--;
+
+                }
+                int contadorMaletas = escVer.pasajero.cantidadMaletas;
+                if(escVer.pasajero.identificacion!=0){
+                acciones+="Pasajero "+ escVer.pasajero.identificacion+" recogio sus "+contadorMaletas+" Maletas \r\n";
+                }
+                while(contadorMaletas>0){
+                    try{
+                        equipaje.pop();maletasDebug--;
+                    }catch(Exception e){}
+                    contadorMaletas--;
+
+                }
+                
+                if(escVer.pasajero.identificacion!=0){
+                acciones+="Pasajero "+ escVer.pasajero.identificacion+" ha salido del sistema \r\n";
+                }
+                escVer.Estado=2;
+                escVer.pasajero=null;
+                if(nodoEscVer.cola.ini!=null){
+                    try{
+                        Nodo nCEscVer = nodoEscVer.cola.descolar();
+                        Pasajero nPEscVer = (Pasajero)nCEscVer.data;
+
+                        escVer.cantidadDocARegistrar = nPEscVer.cantidadDocumentos;
+                        escVer.pasajero = nPEscVer;
+                        escVer.clienteAtendido = nPEscVer.identificacion;
+                        escVer.turnosRestantes = nPEscVer.turnoRegistro;
+                        escVer.Estado = 1;
+                        nodoEscVer.data = (Object)escVer;
+                        acciones+="Escritorio "+ escVer.identificador+" empezo a atender a pasajero "+nPEscVer.identificacion+"\r\n";
+
+                    }catch(Exception e){
+                        escVer.Estado = 2;
+                        nodoEscVer.data = (Object)escVer;
+                    }
+                    }else{
+                        escVer.Estado = 2;
+                        nodoEscVer.data = (Object)escVer;
+                }
+            }
+            
+            
+            
+            while(nodoEscVer.siguiente!=null){
+                nodoEscVer = nodoEscVer.siguiente;
+                escVer = (EscritorioRegistro)nodoEscVer.data;
+                escVer.turnosRestantes--;
+                escVer.turnosRestantes = ((escVer.turnosRestantes<1)? 0: escVer.turnosRestantes);
+                if(escVer.turnosRestantes<1&& escVer.pasajero!=null){
+                    int contadorDocumentos = escVer.cantidadDocARegistrar;
+                    
+                if(escVer.pasajero.identificacion!=0){
+                    acciones+="Escritorio "+ escVer.identificador+" registro "+contadorDocumentos+" Documentos de pasajero "+ escVer.pasajero.identificacion+"\r\n";
+                }
+                    while(contadorDocumentos>0){
+                        nodoEscVer.documentos.push(1);
+
+                        contadorDocumentos--;
+
+                    }
+                    int contadorMaletas = escVer.pasajero.cantidadMaletas;
+                    
+                if(escVer.pasajero.identificacion!=0){
+                    acciones+="Pasajero "+ escVer.pasajero.identificacion+" recogio sus "+contadorMaletas+" Maletas \r\n";
+                }
+                    while(contadorMaletas>0){
+                        try{
+                            equipaje.pop();maletasDebug--;
+                        }catch(Exception e){}
+                        contadorMaletas--;
+
+                    }
+
+                if(escVer.pasajero.identificacion!=0){
+                    acciones+="Pasajero "+ escVer.pasajero.identificacion+" ha salido del sistema \r\n";
+                }
+                    escVer.Estado=2;
+                    escVer.pasajero=null;
+                    if(nodoEscVer.cola.ini!=null){
+                try{
+                    Nodo nCEscVer = nodoEscVer.cola.descolar();
+                    Pasajero nPEscVer = (Pasajero)nCEscVer.data;
+                    
+                    escVer.cantidadDocARegistrar = nPEscVer.cantidadDocumentos;
+                    escVer.pasajero = nPEscVer;
+                    escVer.clienteAtendido = nPEscVer.identificacion;
+                    escVer.turnosRestantes = nPEscVer.turnoRegistro;
+                    escVer.Estado = 1;
+                    nodoEscVer.data = (Object)escVer;
+                    acciones+="Escritorio "+ escVer.identificador+" empezo a atender a pasajero "+nPEscVer.identificacion+"\r\n";
+                    
+                }catch(Exception e){
+                    escVer.Estado = 2;
+                    nodoEscVer.data = (Object)escVer;
+                }
+                }else{
+                    escVer.Estado = 2;
+                nodoEscVer.data = (Object)escVer;
+                }
+                }
+                
+                
+                    
+            }
+        }
+        if(mantenimiento.ini!=null){
+           Nodo nEstacionVer = mantenimiento.ini;
+           Mantenimiento estacionVer = (Mantenimiento) nEstacionVer.data;
+           estacionVer.turnosRestantes--;
+           estacionVer.turnosRestantes = ((estacionVer.turnosRestantes<1)? 0: estacionVer.turnosRestantes);
+           if(estacionVer.turnosRestantes<1){
+               estacionVer.Estado = 2;
+               if(estacionVer.avionId!=0){
+                    acciones+="Avion "+estacionVer.avionId+" ha Salido del Sistema\r\n";
+                    estacionVer.avionId = 0;
+               }
+           }
+           mantenimiento.ini.data = (Object) estacionVer;
+           
+           while(nEstacionVer.siguiente!=null){
+               nEstacionVer = nEstacionVer.siguiente;
+           estacionVer = (Mantenimiento) nEstacionVer.data;
+           estacionVer.turnosRestantes--;
+           estacionVer.turnosRestantes = ((estacionVer.turnosRestantes<1)? 0: estacionVer.turnosRestantes);
+           if(estacionVer.turnosRestantes<1){
+               estacionVer.Estado = 2;
+               if(estacionVer.avionId!=0){
+                    acciones+="Avion "+estacionVer.avionId+" ha Salido del Sistema\r\n";
+                    estacionVer.avionId = 0;
+               }
+           }
+           nEstacionVer.data = (Object) estacionVer;
+           }
+        }
+        if(aviones.ini!=null){
         Avion avionalFrente = (Avion) aviones.ini.data;
         avionalFrente.turnosDesabordaje--;
         if(avionalFrente.turnosDesabordaje==0){
             try{
-            aviones.removerDelFrente();
+            Nodo nodoAv = (Nodo)aviones.removerDelFrente();
+            Avion av = (Avion) nodoAv.data;
+            acciones+="Avion "+av.id+" ha desabordado\r\n";
+                    
             }
             catch(Exception e){
-
+                int a =5;
                     }
+            
             int contadorNuevosPasajeros = avionalFrente.pasajeros;
+            acciones+="Avion "+avionalFrente.id+" ha desabordado "+contadorNuevosPasajeros+" Pasajeros\r\n";
             while(contadorNuevosPasajeros>0){
                 Pasajero nuevoPasajero = new Pasajero(this.pasajerosCreados);
                 int contadorMaletasPasajero = nuevoPasajero.cantidadMaletas;
+                
+                acciones+="Pasajero "+nuevoPasajero.identificacion +" traia "+contadorMaletasPasajero+" maletas\r\n";
                 while(contadorMaletasPasajero>0){
                     Equipaje nuevoEquipaje = new Equipaje(maletasCreadas);
                     equipaje.push(nuevoEquipaje);
+    maletasDebug++;
                     maletasCreadas++;
                     contadorMaletasPasajero--;
                 }
@@ -262,18 +426,117 @@ public class Principal extends javax.swing.JFrame {
         else{
             aviones.ini.data = (Object) avionalFrente;
         }
+        
     }
+    
+     if(mantenimiento.ini!=null){
+    Nodo nodoCM = mantenimiento.ini;
+    Mantenimiento estacion = (Mantenimiento) nodoCM.data;
+    if(estacion.Estado==2){
+    try{
+        Nodo nAvionM = (Nodo)colaMantenimiento.removerDelFrente();
+        Avion avionM = (Avion)nAvionM.data ;
+        estacion.Estado = 1;
+        estacion.turnosRestantes = avionM.turnosMantenimiento;
+        estacion.avionId = avionM.id;
+        
+            acciones+="Estacion "+estacion.identificador+" empezo a atender a Avion "+avionM.id+"\r\n";
+        nodoCM.data = (Object)estacion;
+    }catch(Exception e){
+    }
+    }
+    while(nodoCM.siguiente!=null){
+    nodoCM = nodoCM.siguiente;
+    estacion = (Mantenimiento) nodoCM.data;
+    if(estacion.Estado==2){
+    try{
+        Nodo nAvionM = (Nodo)colaMantenimiento.removerDelFrente();
+        Avion avionM = (Avion) nAvionM.data;
+        estacion.Estado = 1;
+        estacion.avionId = avionM.id;
+        estacion.turnosRestantes = avionM.turnosMantenimiento;
+        
+            acciones+="Estacion "+estacion.identificador+" empezo a atender a Avion "+avionM.id+"\r\n";
+        nodoCM.data = (Object)estacion;
+    }catch(Exception e){
+    }
+    }
+    
+    }
+     }   
      if(avionesRestantes>0){
      int numero = (int)(Math.random()*2)+1;
-     System.out.println(numero);
      Avion nuevoAvion = new Avion(numero, idAviones);
      idAviones++;
      avionesRestantes--;
      aviones.InsertarAlFinal((Object) nuevoAvion);
      
+     
+    }
+    NodoCola apuntadorBusqueda = escritorios.ini;
+    while(verificarEscritorioDisp() && desabordaje.ini !=null){
+        if(desabordaje.ini!=null){
+        try{
+            Nodo desabordado = desabordaje.descolar();
+            Pasajero personaDes = (Pasajero) desabordado.data;
+            boolean asignado = false;
+            
+            NodoCola verificador = apuntadorBusqueda;
+            EscritorioRegistro verificadorE = (EscritorioRegistro) verificador.data;
+            if(verificadorE.Estado==2){
+            verificadorE.cantidadDocARegistrar = personaDes.cantidadDocumentos;
+            verificadorE.pasajero = personaDes;
+            verificadorE.clienteAtendido = personaDes.identificacion;
+            verificadorE.turnosRestantes = personaDes.turnoRegistro;
+            verificadorE.Estado = 1;
+            verificador.data = (Object)verificadorE;
+            acciones+="Escritorio "+verificadorE.identificador+" empezo a atender a Pasajero "+personaDes.identificacion+"\r\n";
+            asignado = true;
+            }
+            while(!asignado&&verificador.siguiente!=null){
+            verificador = verificador.siguiente;
+            verificadorE = (EscritorioRegistro) verificador.data;
+            if(verificadorE.Estado==2){
+            verificadorE.cantidadDocARegistrar = personaDes.cantidadDocumentos;
+            verificadorE.pasajero = personaDes;
+            verificadorE.clienteAtendido = personaDes.identificacion;
+            verificadorE.turnosRestantes = personaDes.turnoRegistro;
+            verificadorE.Estado = 1;
+            verificador.data = (Object)verificadorE;
+            acciones+="Escritorio "+verificadorE.identificador+" empezo a atender a Pasajero "+personaDes.identificacion+"\r\n";
+            asignado = true;
+            }
+            }
+            if(!asignado){
+            verificador = apuntadorBusqueda;
+            verificadorE = (EscritorioRegistro) verificador.data;
+            if(verificador.cola.obtenerNumeroElementos()<10){
+            verificador.cola.encolar(personaDes);
+            asignado = true;
+            }
+            while(!asignado){
+            verificador = verificador.siguiente;
+            verificadorE = (EscritorioRegistro) verificador.data;
+            if(verificador.cola.obtenerNumeroElementos()<10){
+            verificador.cola.encolar(personaDes);
+            asignado = true;
+            }
+            }
+            }
+            
+        }catch(Exception e){}
+        
+        }
+        if(apuntadorBusqueda.siguiente!=null){
+            apuntadorBusqueda=apuntadorBusqueda.siguiente;
+        }else{
+            apuntadorBusqueda = escritorios.ini;
+        }
+        
+        
     }
     
-    mostrarEstado();
+    mostrarEstado(acciones);
     escribirArchivo();
     generarImagen();
     try{
@@ -288,6 +551,10 @@ public class Principal extends javax.swing.JFrame {
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
     public void generarImagen(){
     try {
       
@@ -316,6 +583,23 @@ public class Principal extends javax.swing.JFrame {
     }
     }
     
+    public boolean verificarEscritorioDisp(){
+        boolean resultado = false;
+        NodoCola verificador = escritorios.ini;
+        EscritorioRegistro verificadorE = (EscritorioRegistro) verificador.data;
+        if(verificadorE.Estado==2||verificador.cola.obtenerNumeroElementos()<10){
+        resultado = true;
+        }
+        while(verificador.siguiente!=null){
+        verificador = verificador.siguiente;
+        verificadorE = (EscritorioRegistro) verificador.data;
+        if(verificadorE.Estado==2||verificador.cola.obtenerNumeroElementos()<10){
+        resultado = true;
+        }
+        }
+        return resultado; 
+    
+    }
     public void escribirArchivo(){
     try
     {
@@ -330,6 +614,7 @@ public class Principal extends javax.swing.JFrame {
     escribir.write("digraph G\r\n{\r\n");
     escribir.write(generarGraphvizAvion());
     escribir.write(generarGraphvizDesabordaje());
+    escribir.write(generarGraphvizEscritorio());
     escribir.write(generarGraphvizEquipaje());
     escribir.write(generarGraphvizMantenimiento());
     escribir.write(generarGraphvizAvionVacio());
@@ -351,11 +636,10 @@ public class Principal extends javax.swing.JFrame {
     public String generarGraphvizEquipaje(){
         String resultadoDef = "";
         String resultadoLineas = "";
-        equipaje.recorrer();
         if(!equipaje.estaVacia()){
             Nodo nodoActualM = equipaje.actual;
             Equipaje maletaActual = (Equipaje) nodoActualM.data;
-            
+             
             resultadoDef += "Maleta"+maletaActual.identificador+"[shape=box];\r\n";
             
             
@@ -497,6 +781,100 @@ public class Principal extends javax.swing.JFrame {
         
         return resultadoDef+resultadoLineas;
     }
+    
+    public String generarGraphvizEscritorio(){
+        String resultadoDef = "";
+        String resultadoLineas = "";
+        if(!escritorios.estaVacia()){
+            NodoCola nodoEsc =escritorios.ini;
+            EscritorioRegistro escritorioO= (EscritorioRegistro)nodoEsc.data;
+            resultadoDef += "Escritorio"+escritorioO.identificador+"[shape=box];\r\n";
+            
+            
+            if(!nodoEsc.cola.estaVacia()){
+                Nodo pasNodo =nodoEsc.cola.ini;
+                Pasajero pasaO= (Pasajero)pasNodo.data;
+                resultadoDef += "Pasajero"+pasaO.identificacion+";\r\n";
+                resultadoLineas += "Escritorio"+escritorioO.identificador+"->"+"Pasajero"+pasaO.identificacion+";\r\n";
+                if(pasNodo.siguiente!=null){
+                    Nodo pasNodoS =nodoEsc.cola.ini.siguiente;
+                    Pasajero pasS= (Pasajero)pasNodoS.data;
+                    resultadoLineas += "Pasajero"+pasaO.identificacion+"->"+"Pasajero"+pasS.identificacion+";\r\n";
+                }
+
+                while(pasNodo.siguiente!=null){
+                    pasNodo =pasNodo.siguiente;
+                    pasaO= (Pasajero)pasNodo.data;
+                resultadoDef += "Pasajero"+pasaO.identificacion+";\r\n";
+
+                if(pasNodo.siguiente!=null){
+                    Nodo pasNodoS =pasNodo.siguiente;
+                    Pasajero pasS= (Pasajero)pasNodoS.data;
+                    resultadoLineas += "Pasajero"+pasaO.identificacion+"->"+"Pasajero"+pasS.identificacion+";\r\n";
+                }
+                }
+
+            }
+            
+            if(nodoEsc.siguiente!=null){
+                NodoCola escNodoS =escritorios.ini.siguiente;
+                EscritorioRegistro escS= (EscritorioRegistro)escNodoS.data;
+                resultadoLineas += "Escritorio"+escritorioO.identificador+"->"+"Escritorio"+escS.identificador+";\r\n";
+            }
+            
+            if(nodoEsc.anterior!=null){
+                NodoCola escNodoS =escritorios.ini.anterior;
+                EscritorioRegistro escS= (EscritorioRegistro)escNodoS.data;
+                resultadoLineas += "Escritorio"+escritorioO.identificador+"->"+"Escritorio"+escS.identificador+";\r\n";
+            }
+            
+            while(nodoEsc.siguiente!=null){
+                nodoEsc =nodoEsc.siguiente;
+             escritorioO= (EscritorioRegistro)nodoEsc.data;
+            resultadoDef += "Escritorio"+escritorioO.identificador+"[shape=box];\r\n";
+            if(!nodoEsc.cola.estaVacia()){
+                Nodo pasNodo =nodoEsc.cola.ini;
+                Pasajero pasaO= (Pasajero)pasNodo.data;
+                resultadoDef += "Pasajero"+pasaO.identificacion+";\r\n";
+                resultadoLineas += "Escritorio"+escritorioO.identificador+"->"+"Pasajero"+pasaO.identificacion+";\r\n";
+                if(pasNodo.siguiente!=null){
+                    Nodo pasNodoS =nodoEsc.cola.ini.siguiente;
+                    Pasajero pasS= (Pasajero)pasNodoS.data;
+                    resultadoLineas += "Pasajero"+pasaO.identificacion+"->"+"Pasajero"+pasS.identificacion+";\r\n";
+                }
+
+                while(pasNodo.siguiente!=null){
+                    pasNodo =pasNodo.siguiente;
+                    pasaO= (Pasajero)pasNodo.data;
+                resultadoDef += "Pasajero"+pasaO.identificacion+";\r\n";
+
+                if(pasNodo.siguiente!=null){
+                    Nodo pasNodoS =pasNodo.siguiente;
+                    Pasajero pasS= (Pasajero)pasNodoS.data;
+                    resultadoLineas += "Pasajero"+pasaO.identificacion+"->"+"Pasajero"+pasS.identificacion+";\r\n";
+                }
+                }
+
+            }
+            
+            if(nodoEsc.siguiente!=null){
+                NodoCola escNodoS =nodoEsc.siguiente;
+                EscritorioRegistro escS= (EscritorioRegistro)escNodoS.data;
+                resultadoLineas += "Escritorio"+escritorioO.identificador+"->"+"Escritorio"+escS.identificador+";\r\n";
+            }
+            
+            if(nodoEsc.anterior!=null){
+                NodoCola escNodoS =nodoEsc.anterior;
+                EscritorioRegistro escS= (EscritorioRegistro)escNodoS.data;
+                resultadoLineas += "Escritorio"+escritorioO.identificador+"->"+"Escritorio"+escS.identificador+";\r\n";
+            } 
+            }
+            
+        }
+        
+        return resultadoDef+resultadoLineas;
+    }
+    
     public String generarGraphvizDesabordaje(){
         String resultadoDef = "";
         String resultadoLineas = "";
@@ -541,18 +919,63 @@ public class Principal extends javax.swing.JFrame {
     }
     
     
-    public void mostrarEstado(){
-    String texto="***********AVIONES*********\n\r";
+    public void mostrarEstado(String acciones){
+    String texto="***********ACCIONES*********\n\r";
+    texto+= acciones;
+    texto+="***********COLA AVIONES*********\n\r";
     if(this.aviones.ini!=null){
     Nodo nodoAvionActual = this.aviones.ini;
     Avion avionActual = (Avion)nodoAvionActual.data;
-    texto = texto+"Id:"+ avionActual.id+"-Tipo:"+avionActual.tipo+"Turno Desabordaje"+avionActual.turnosDesabordaje+"Turno Mantenimiento"+avionActual.turnosMantenimiento+"Pasajeros"+avionActual.pasajeros+"\n\r";
+    texto = texto+"Id: "+ avionActual.id+"-Tipo: "+avionActual.tipo+"Turno Desabordaje "+avionActual.turnosDesabordaje+"Turno Mantenimiento "+avionActual.turnosMantenimiento+"Pasajeros "+avionActual.pasajeros+"\n\r";
     while(nodoAvionActual.siguiente!=null){
     nodoAvionActual = nodoAvionActual.siguiente;
     avionActual = (Avion)nodoAvionActual.data;
-    texto = texto+"Id:"+ avionActual.id+"-Tipo:"+avionActual.tipo+"Turno Desabordaje"+avionActual.turnosDesabordaje+"Turno Mantenimiento"+avionActual.turnosMantenimiento+"Pasajeros"+avionActual.pasajeros+"\n\r";
+    texto = texto+"Id: "+ avionActual.id+"-Tipo: "+avionActual.tipo+"Turno Desabordaje "+avionActual.turnosDesabordaje+"Turno Mantenimiento "+avionActual.turnosMantenimiento+"Pasajeros "+avionActual.pasajeros+"\n\r";
     }
     }
+    texto+="***********COLA DESABORDAJE*********\n\r";
+    texto+="Persona en cola "+desabordaje.obtenerNumeroElementos()+"\n\r";
+     texto+="***********ESCRITORIOS DE REGISTRO*********\n\r";
+    if(this.escritorios.ini!=null){
+    NodoCola nodoEsc = this.escritorios.ini;
+    EscritorioRegistro escA = (EscritorioRegistro)nodoEsc.data;
+    if(escA.pasajero!=null){
+    texto = texto+"Id: "+ escA.identificador+"-Estado: Ocupado Turnos Restantes "+escA.turnosRestantes+" Pasajero Atendiendo "+escA.pasajero.identificacion+" Cola Espera "+nodoEsc.cola.obtenerNumeroElementos()+" Pila Documentos "+nodoEsc.documentos.obtenerNumeroElementos()+"\n\r";
+    }else{
+        texto = texto+"Id: "+ escA.identificador+"-Estado: Libre Turnos Restantes "+escA.turnosRestantes+" Pasajero Atendiendo Ninguno Cola Espera "+nodoEsc.cola.obtenerNumeroElementos()+" Pila Documentos "+nodoEsc.documentos.obtenerNumeroElementos()+"\n\r";
+    }
+    while(nodoEsc.siguiente!=null){
+    nodoEsc = nodoEsc.siguiente;
+    escA = (EscritorioRegistro)nodoEsc.data;
+    if(escA.pasajero!=null){
+    texto = texto+"Id: "+ escA.identificador+"-Estado: Ocupado Turnos Restantes "+escA.turnosRestantes+" Pasajero Atendiendo "+escA.pasajero.identificacion+" Cola Espera "+nodoEsc.cola.obtenerNumeroElementos()+" Pila Documentos "+nodoEsc.documentos.obtenerNumeroElementos()+"\n\r";
+    }else{
+        texto = texto+"Id: "+ escA.identificador+"-Estado: Libre Turnos Restantes "+escA.turnosRestantes+" Pasajero Atendiendo Ninguno Cola Espera "+nodoEsc.cola.obtenerNumeroElementos()+" Pila Documentos "+nodoEsc.documentos.obtenerNumeroElementos()+"\n\r";
+    }
+    }
+    }
+    
+    texto+="***********LISTA MALETAS*********\n\r";
+    texto+="Maletas en lista "+equipaje.contadorElementos+"\n\r";
+    
+    texto+="***********COLA MANTENIMIENTO AVIONES*********\n\r";
+    texto+="Aviones en cola "+colaMantenimiento.obtenerNumeroElementos()+"\n\r";
+    texto+="***********ESTACIONES MANTENIMIENTO*********\n\r";
+    if(this.mantenimiento.ini!=null){
+    Nodo nodoME = this.mantenimiento.ini;
+    Mantenimiento estacionE = (Mantenimiento)nodoME.data;
+    texto = texto+"Id: "+ estacionE.identificador+" Turnos Restantes "+estacionE.turnosRestantes+" Estado: "+estacionE.Estado+" Avion Atendido "+estacionE.avionId+"\n\r";
+    while(nodoME.siguiente!=null){
+    nodoME = nodoME.siguiente;
+    estacionE = (Mantenimiento)nodoME.data;
+    texto = texto+"Id: "+ estacionE.identificador+" Turnos Restantes "+estacionE.turnosRestantes+" Estado: "+estacionE.Estado+" Avion Atendido "+estacionE.avionId+"\n\r";
+    }
+    }
+    texto+="***********PERSONAS ATENDIDAS*********\n\r";
+    texto+=""+this.pasajerosCreados+"\n\r";
+    texto+="***********MALETAS*********\n\r";
+    texto+=""+this.maletasDebug+"\n\r";
+    
     jTextArea1.setText(texto);
     }
     /**

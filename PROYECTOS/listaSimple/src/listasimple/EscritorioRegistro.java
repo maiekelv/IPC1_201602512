@@ -15,6 +15,7 @@ public class EscritorioRegistro {
     public int cantidadDocARegistrar;
     public int turnosRestantes;
     public String identificador;
+    public Pasajero pasajero;
     
     public EscritorioRegistro (int identificador){
     this.clienteAtendido = 0;

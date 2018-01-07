@@ -81,7 +81,19 @@ public class ListaAviones {
     }
     return (Object) datoEliminado;
     }
-
+public int obtenerNumeroElementos(){
+ int resultado = 0;
+ if(ini!=null){
+     resultado++;
+     Nodo actual = ini;
+     while(actual.siguiente!= null){
+     resultado++;
+     actual = actual.siguiente;
+     }
+     
+ }
+ return resultado;
+}
     private void ExceptionListaVacia(String nombre) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
