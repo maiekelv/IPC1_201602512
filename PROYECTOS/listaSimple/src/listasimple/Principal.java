@@ -33,6 +33,11 @@ public class Principal extends javax.swing.JFrame {
         
         jButtonSiguiente.setVisible(false);
         jButtonTerminar.setVisible(false);
+        jButton1.setVisible(false);
+        jButton2.setVisible(false);
+        jButton3.setVisible(false);
+        jButton4.setVisible(false);
+        jButton5.setVisible(false);
         
     }
 
@@ -59,6 +64,11 @@ public class Principal extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,22 +80,30 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jButtonTerminar.setText("Terminar");
+        jButtonTerminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTerminarActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setMaximumSize(new java.awt.Dimension(5000, 5000));
+        jTextArea1.setPreferredSize(new java.awt.Dimension(5000, 5000));
         jScrollPane1.setViewportView(jTextArea1);
 
-        jPanel1.setMaximumSize(new java.awt.Dimension(35000, 35000));
+        jPanel1.setMaximumSize(new java.awt.Dimension(15000, 15000));
+        jPanel1.setPreferredSize(new java.awt.Dimension(15000, 15000));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1082, Short.MAX_VALUE)
+            .addGap(0, 15000, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 892, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jButtonIniciar.setText("Iniciar");
@@ -121,6 +139,41 @@ public class Principal extends javax.swing.JFrame {
                 }
             });
 
+            jButton1.setText("Llegadas aviones");
+            jButton1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButton1ActionPerformed(evt);
+                }
+            });
+
+            jButton2.setText("Desabordaje");
+            jButton2.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButton2ActionPerformed(evt);
+                }
+            });
+
+            jButton3.setText("Escritorio Reg");
+            jButton3.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButton3ActionPerformed(evt);
+                }
+            });
+
+            jButton4.setText("Equipaje");
+            jButton4.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButton4ActionPerformed(evt);
+                }
+            });
+
+            jButton5.setText("Mantenimiento");
+            jButton5.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButton5ActionPerformed(evt);
+                }
+            });
+
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
@@ -152,12 +205,22 @@ public class Principal extends javax.swing.JFrame {
                             .addGap(228, 228, 228)
                             .addComponent(jLabel4)
                             .addGap(38, 38, 38)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(37, 37, 37)
+                            .addComponent(jButton1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButton2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButton3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButton4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButton5)))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(20, 20, 20)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                    .addGap(18, 18, 18)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(34, 34, 34))
             );
@@ -170,7 +233,12 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonIniciar)
                         .addComponent(jButtonSiguiente)
-                        .addComponent(jButtonTerminar))
+                        .addComponent(jButtonTerminar)
+                        .addComponent(jButton1)
+                        .addComponent(jButton2)
+                        .addComponent(jButton3)
+                        .addComponent(jButton4)
+                        .addComponent(jButton5))
                     .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
@@ -180,12 +248,10 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(31, 31, 31)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE)))
-                    .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 15000, Short.MAX_VALUE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
 
             pack();
@@ -216,6 +282,12 @@ public class Principal extends javax.swing.JFrame {
     jTextField2.setVisible(false);
     jLabel3.setVisible(false);
     jTextField3.setVisible(false);
+    jButton1.setVisible(true);
+    jButton2.setVisible(true);
+    jButton3.setVisible(true);
+    jButton4.setVisible(true);
+    jButton5.setVisible(true);
+    
     int contadorEscritoriosCreados = 1;
     if(numeroEscritorios>26){numeroEscritorios = 26;}
     while(contadorEscritoriosCreados<=numeroEscritorios){
@@ -537,7 +609,7 @@ public class Principal extends javax.swing.JFrame {
     }
     
     mostrarEstado(acciones);
-    escribirArchivo();
+    escribirArchivo(1);
     generarImagen();
     try{
                 Thread.sleep(1000);
@@ -555,6 +627,83 @@ public class Principal extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jButtonTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTerminarActionPerformed
+        // TODO add your handling code here:
+        jButtonIniciar.setVisible(true);
+        jButtonSiguiente.setVisible(true);
+        jButtonTerminar.setVisible(false);
+        jLabel1.setVisible(true);
+        jTextField1.setVisible(true);
+        jLabel2.setVisible(true);
+        jTextField2.setVisible(true);
+        jLabel3.setVisible(true);
+        jTextField3.setVisible(true);
+        jButton1.setVisible(false);
+        jButton2.setVisible(false);
+        jButton3.setVisible(false);
+        jButton4.setVisible(false);
+        jButton5.setVisible(false);
+        jButtonSiguiente.setVisible(false);
+        
+        
+        
+    }//GEN-LAST:event_jButtonTerminarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    escribirArchivo(2);
+    generarImagen();
+    try{
+                Thread.sleep(1000);
+            }catch(InterruptedException ex){
+                Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE,null,ex);
+            }
+    repintarImagen();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+escribirArchivo(3);
+    generarImagen();
+    try{
+                Thread.sleep(1000);
+            }catch(InterruptedException ex){
+                Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE,null,ex);
+            }
+    repintarImagen();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+escribirArchivo(4);
+    generarImagen();
+    try{
+                Thread.sleep(1000);
+            }catch(InterruptedException ex){
+                Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE,null,ex);
+            }
+    repintarImagen();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+escribirArchivo(5);
+    generarImagen();
+    try{
+                Thread.sleep(1000);
+            }catch(InterruptedException ex){
+                Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE,null,ex);
+            }
+    repintarImagen();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+escribirArchivo(6);
+    generarImagen();
+    try{
+                Thread.sleep(1000);
+            }catch(InterruptedException ex){
+                Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE,null,ex);
+            }
+    repintarImagen();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
     public void generarImagen(){
     try {
       
@@ -600,7 +749,7 @@ public class Principal extends javax.swing.JFrame {
         return resultado; 
     
     }
-    public void escribirArchivo(){
+    public void escribirArchivo(int tipo){
     try
     {
     //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
@@ -612,13 +761,25 @@ public class Principal extends javax.swing.JFrame {
 
     //Escribimos en el archivo con el metodo write 
     escribir.write("digraph G\r\n{\r\n");
+    if(tipo==1){
     escribir.write(generarGraphvizAvion());
     escribir.write(generarGraphvizDesabordaje());
     escribir.write(generarGraphvizEscritorio());
     escribir.write(generarGraphvizEquipaje());
     escribir.write(generarGraphvizMantenimiento());
     escribir.write(generarGraphvizAvionVacio());
-    
+    }else if(tipo==2){
+    escribir.write(generarGraphvizAvion());
+    }else if(tipo==3){
+    escribir.write(generarGraphvizDesabordaje());
+    }else if(tipo==4){
+    escribir.write(generarGraphvizEscritorio());
+    }else if(tipo==5){
+    escribir.write(generarGraphvizEquipaje());
+    }else if(tipo==6){
+    escribir.write(generarGraphvizMantenimiento());
+    escribir.write(generarGraphvizAvionVacio());
+    }
     escribir.write("}\r\n");
 
     //Cerramos la conexion
@@ -1014,6 +1175,11 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonIniciar;
     private javax.swing.JButton jButtonSiguiente;
     private javax.swing.JButton jButtonTerminar;
